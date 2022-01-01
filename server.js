@@ -7,12 +7,15 @@ const path = require('path')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html')
-app.engine('html', handlebars({
-    layoutsDir : `${__dirname}/views/layouts`,
-    defaultLayout : 'main_layout',
-    partialsDir : `${__dirname}/views/components`,
-    extname : 'html'
-}))
+app.engine(
+	"html",
+	handlebars.create({
+		layoutsDir: `${__dirname}/views/layouts`,
+		defaultLayout: "main_layout",
+		partialsDir: `${__dirname}/views/components`,
+		extname: "html",
+	}).engine
+)
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.json())
